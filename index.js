@@ -13,8 +13,18 @@ const cinemaSchema = new mongoose.Schema({
 })
 
 const Cinema = mongoose.model('Cinema', cinemaSchema)
-const apocalypse = new Cinema({ title: 'Apocalypse Now', year: 1979, score: 9.4, rating: 'A' })
 
 
 
+Cinema.insertMany([
+    { title: 'Apocalypse Now', year: 1979, score: 9.4, rating: 'A' },
+    { title: 'The Covenant', year: 2023, score: 7.9, rating: 'R' },
+    { title: 'Kantara', year: 2023, score: 8.3, rating: 'R' },
+    { title: "RRR", year: 2022, score: 9.1, rating: 'R' }
+
+])
+    .then(data => {
+        console.log('It Worked!')
+        console.log(data);
+    })
 
