@@ -57,6 +57,10 @@ productSchema.methods.greet = function () {
     console.log(`- frm ${this.name}`)
 }
 
+productSchema.static.fireSale = function () {
+    return this.updateMany({}, { onSale: true, price: 0 })
+}
+
 const findProduct = async () => {
     const foundproduct = await Product.findOne({ name: 'Street Bike' })
     foundproduct.greet();
@@ -66,7 +70,8 @@ const findProduct = async () => {
     console.log(foundproduct);
 }
 
-findProduct();
+productSchema.fireSale().then(res => console.log(res));
+
 
 const Product = mongoose.model('Product', productSchema);
 
